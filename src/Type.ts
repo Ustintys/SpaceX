@@ -7,9 +7,24 @@ export type ServerData = {
   details: string;
 }
 
+export type ModalProps = {
+  modalState: ModalState | null;
+  handleCloseModal: () => void;
+};
+
+export type ModalState = {
+  id: number;
+  imgLarge: string;
+  missionName: string;
+  rocketName: string;
+  details: string;
+}
+
 export type State = {
   serverData: ServerData[];
   isLoading: boolean;
+  openModal: boolean;
+  modalState: ModalState | null;
 }
 
 export type Action =
@@ -18,4 +33,10 @@ export type Action =
     }
   | { type: "CHANGE_LOADING";
       payload: boolean;
-    };
+    }
+  | { type: "CHANGE_MODAL";
+      payload: boolean;
+    }
+  | { type: "GET_MODAL_DATA";
+      payload: ModalState;
+    }
